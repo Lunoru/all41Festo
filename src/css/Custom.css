@@ -227,6 +227,14 @@ sup {
   top: -0.5em;
 }
 
+a {
+  color: #0d6efd;
+  text-decoration: underline;
+}
+a:hover {
+  color: #0a58ca;
+}
+
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
   color: inherit;
   text-decoration: none;
@@ -11144,6 +11152,16 @@ textarea.form-control-lg {
   position: relative;
   margin-right: 10px;
 }
+.container-fluid header .active::after, .container-sm header .active::after, .container-md header .active::after, .container-lg header .active::after, .container-xl header .active::after, .container-xxl header .active::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 0;
+  left: 0;
+  bottom: -26.3px;
+  /* <- distance */
+  border-bottom: #0587cb 5px solid;
+}
 .container-fluid header .headerHome:hover::after, .container-sm header .headerHome:hover::after, .container-md header .headerHome:hover::after, .container-lg header .headerHome:hover::after, .container-xl header .headerHome:hover::after, .container-xxl header .headerHome:hover::after {
   content: "";
   position: absolute;
@@ -11164,6 +11182,48 @@ textarea.form-control-lg {
 .container-fluid header .UserIcon, .container-sm header .UserIcon, .container-md header .UserIcon, .container-lg header .UserIcon, .container-xl header .UserIcon, .container-xxl header .UserIcon {
   height: 12px;
   vertical-align: 0;
+}
+
+.den {
+  text-align: center;
+}
+.den .accessDen {
+  margin-bottom: 15%;
+}
+
+table {
+  display: block;
+  height: 400px;
+  overflow-y: scroll;
+  width: 100%;
+  margin-bottom: 50%;
+}
+table thead {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  background-color: #e5e5e5;
+  z-index: 10;
+}
+table thead th:after,
+table thead th:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+table thead th:before {
+  top: -1px;
+  border-top: 1px solid #e5e5e5;
+}
+table thead th:after {
+  bottom: -1px;
+  border-bottom: 2px solid black;
+}
+
+.mailDiv {
+  width: 20%;
+  height: 625px;
 }
 
 .h1test {

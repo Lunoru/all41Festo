@@ -3,38 +3,65 @@ import { Profile } from "../../Pages/Profile";
 import { Hello } from "../../Pages/Hello";
 import "../../sass/Custom.scss"
 import {Home} from "../../Pages/Home";
-
-
+import {Start} from "../../Pages/Start";
+import {useMsal} from "@azure/msal-react";
+import {Help} from "../../Pages/Help";
+import {ClassroomManage} from "../../Pages/ClassroomManage";
+import {NewRequest} from "../../Pages/NewRequest";
+import {LearningHistory} from "../../Pages/LearningHistory";
+import {ReqApprove} from "../../Pages/ReqApprove";
+import {Denied} from "../../Pages/Denied";
 
 const Pages = () => {
+
+    const {accounts} = useMsal();
+    const role = accounts[0] && accounts[0].idTokenClaims["roles"][0];
+
+    if (role === "Coordinator"){
+
     return (
         <Routes>
-            <Route path="/" element={<Home />}/>
+            <Route path="/home" element={<Home />}/>
+            <Route path="/NewRequest" element={<NewRequest />}/>
+            <Route path="/ClassroomManage" element={<ClassroomManage />}/>
+            <Route path="/LearningHistory" element={<LearningHistory />}/>
+            <Route path="/help" element={<Help />}/>
+            <Route path="/" element={<Start />}/>
             <Route path="/profile" element={<Profile />}/>
             <Route path="/hello" element={ <Hello />}/>
+            <Route path="/ReqApprove" element={ <ReqApprove />}/>
+
         </Routes>
-    )
+    )}else if(role === "Requestor"){
+        return  (<Routes>
+            <Route path="/home" element={<Home />}/>
+            <Route path="/NewRequest" element={<NewRequest />}/>
+            <Route path="/LearningHistory" element={<LearningHistory />}/>
+            <Route path="/help" element={<Help />}/>
+            <Route path="/" element={<Start />}/>
+        </Routes>)
+    }else if (role === "Student" || "Teacher") {
+        return (<Routes>
+            <Route path="/home" element={<Home />}/>
+            <Route path="/help" element={<Help />}/>
+            <Route path="/LearningHistory" element={<LearningHistory />}/>
+            <Route path="/" element={<Start />}/>
+            </Routes>)
+
+    }else{
+        return (<Routes>
+            <Route path="/home" element={<Home />}/>
+            <Route path="/" element={<Start />}/>
+        </Routes>)
+    }
+
 }
 
 const Main = () =>{
-    return(<main className="mainPage container">
-            <h1 className={"h1test"}>This Is Main Page</h1>
-            <h3 className="testText">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis consequatur dolore dolores doloribus dolorum earum error est libero, magni nihil odit officia optio quae quod tenetur? Accusantium non sunt tempore!
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur deleniti dolor dolorem ducimus ea enim, eum fugiat id, laboriosam obcaecati possimus quam, quibusdam quod sint velit? Eaque in magni quo?
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor earum enim est, eum ex, exercitationem, fuga illo iste nam natus nisi nulla provident quaerat qui recusandae reiciendis sit sunt veritatis?
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque eum harum illo itaque praesentium ratione similique? Amet aperiam aspernatur corporis dolorem esse iusto laboriosam quasi quia ratione reiciendis repudiandae, suscipit.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus ea, repellendus! Alias ipsum laborum magnam maiores molestiae nam nostrum obcaecati omnis, quae quas rerum saepe sunt ullam velit voluptatem voluptatum.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores aut delectus deleniti dolores ducimus fugiat illo modi molestias nulla quos, rem soluta temporibus, veritatis. Ea laborum nesciunt obcaecati repellat sunt.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquid aperiam autem consequatur corporis dolorem eligendi enim, ex fuga hic illum ipsa magni neque nesciunt nihil pariatur perspiciatis placeat tenetur.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet cumque eligendi enim ex facere hic laudantium maiores minus necessitatibus nemo, nostrum nulla, numquam qui sint sit tempore ullam, voluptatum!
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, consectetur culpa debitis ea eaque, et illo impedit in, ipsa labore laboriosam nam necessitatibus nisi qui quisquam rerum sequi tempore voluptate!
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias amet consequuntur dolore enim, esse laboriosam libero, minima pariatur possimus quas quidem rem sed sequi sint sit! Blanditiis illum reprehenderit vel.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque, distinctio dolorem ex necessitatibus officia pariatur. Ad alias dicta, distinctio, enim et hic laudantium nisi numquam optio placeat quas quo sequi!
-            </h3>
-
-    <Pages/>
-    </main>
-    )
+        return(<main className="mainPage">
+                <Pages/>
+            </main>
+        )
+    
 }
 export default Main
