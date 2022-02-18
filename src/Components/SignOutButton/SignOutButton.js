@@ -13,7 +13,9 @@ function handleLogout(instance) {
  * Renders a button which, when selected, will open a popup for logout
  */
 export const SignOutButton = () => {
-    const { instance} = useMsal();
+    const { instance, accounts } = useMsal();
+    const name = accounts[0] && accounts[0].name;
+    const token = accounts[0] && accounts[0].idTokenClaims["roles"];
     return (
                 <a href="#" className="logIn" onClick={() => handleLogout(instance)}><FontAwesomeIcon con className="UserIcon" icon={faUser}> </FontAwesomeIcon> Log out </a>
 

@@ -62,22 +62,9 @@ export const loginRequest = {
  * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/resources-and-scopes.md
  */
 export const protectedResources = {
-    // RoleAssign:{
-    // endpoint: "https://graph.microsoft.com/beta/servicePrincipals/070c38b3-d8cd-4aae-97b7-e49d01a98507/appRoleAssignedTo",
-    // scopes: ["AppRoleAssignment.ReadWrite.All"],
-    // },
     graphMe: {
-        // endpoint: "https://graph.microsoft.com/v1.0/users",
-        // scopes: ["User.ReadBasic.All"],
-
-        // endpoint: "https://graph.microsoft.com/beta/servicePrincipals/070c38b3-d8cd-4aae-97b7-e49d01a98507/appRoleAssignedTo",
-
-        // endpoint: "https://graph.microsoft.com/v1.0/me/messages?$top=5",
-        // scopes: ["User.ReadBasic.All"],
-
-        endpoint: "https://graph.microsoft.com/beta/users/a7faa43c-0917-4deb-a6a9-b78e568ab2fd/appRoleAssignments",
-        scopes: ["AppRoleAssignment.ReadWrite.All"],
-
+        endpoint: "https://graph.microsoft.com/v1.0/me",
+        scopes: ["User.Read"],
     },
     apiHello: {
         endpoint: "https://localhost:44345/WeatherForecast",
