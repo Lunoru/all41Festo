@@ -11,17 +11,17 @@ export const PageLayout = (props) => {
     const {accounts} = useMsal();
     let role = [];
     if ((accounts[0] && accounts[0].idTokenClaims["roles"]) === undefined){
-        role.push('noRole');
+        role.push('Guest');
     }
     else{
-        role.push(accounts[0] && accounts[0].idTokenClaims["roles"]);
+        role.push(accounts[0] && accounts[0].idTokenClaims["roles"][0]);
     }
 
     console.log(role);
 
 
     if (isAuthenticated) {
-        if ( role == 'noRole'){
+        if ( role == 'Guest'){
             return(
                 <div className="container-fluid">
                     <Header />

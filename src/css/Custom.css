@@ -11196,7 +11196,6 @@ table {
   height: 400px;
   overflow-y: scroll;
   width: 100%;
-  margin-bottom: 50%;
 }
 table thead {
   position: sticky;

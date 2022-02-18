@@ -12,8 +12,14 @@ import {NavLink} from "react-router-dom";
 export const NavigationBar = () => {
 
     const {accounts} = useMsal();
-    const role = accounts[0] && accounts[0].idTokenClaims["roles"][0];
-
+    // const role = accounts[0] && accounts[0].idTokenClaims["roles"][0];
+    let role = [];
+    if ((accounts[0] && accounts[0].idTokenClaims["roles"]) === undefined){
+        role.push('Guest');
+    }
+    else{
+        role.push(accounts[0] && accounts[0].idTokenClaims["roles"]);
+    }
 
     /**
      * Most applications will need to conditionally render certain components based on whether a user is signed in or not.
@@ -21,14 +27,14 @@ export const NavigationBar = () => {
      * only render their children if a user is authenticated or unauthenticated, respectively.
      */
 
-    if (role === "Coordinator"){
+    if (role == "Coordinator"){
         return (
             <AuthenticatedTemplate>
                 <CordNav />
             </AuthenticatedTemplate>
 
         )
-    }else if (role === "Student"){
+    }else if (role == "Student"){
         return(
             <AuthenticatedTemplate>
                 <StudTeachNav />
@@ -36,11 +42,11 @@ export const NavigationBar = () => {
 
         )
 
-    }else if (role === "Teacher"){
+    }else if (role == "Teacher"){
       return (<AuthenticatedTemplate>
           <StudTeachNav />
       </AuthenticatedTemplate>)
-    }else if (role === "Requestor"){
+    }else if (role == "Requestor"){
         return (<AuthenticatedTemplate>
             <RequestNav />
         </AuthenticatedTemplate>)

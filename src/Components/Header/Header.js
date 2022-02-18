@@ -1,22 +1,27 @@
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import React, {useState} from "react";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faUser} from "@fortawesome/free-solid-svg-icons";
 import {useIsAuthenticated, useMsal} from "@azure/msal-react";
 import {SignOutButton} from "../SignOutButton/SignOutButton";
 import {SignInButton} from "../SignInButton/SignInButton";
 import {NavigationBar} from "../NavigationBar/NavigationBar";
 import "../../sass/Custom.scss"
-import {Route} from "react-router-dom";
+
 
 const Header = (props) =>{
     const {accounts} = useMsal();
     const isAuthenticated = useIsAuthenticated();
     const name = accounts[0] && accounts[0].name;
-    const role = accounts[0] && accounts[0].idTokenClaims["roles"];
+    // const role = accounts[0] && accounts[0].idTokenClaims["roles"];
     // const token = accounts[0] && accounts[0].idTokenClaims
     let roles;
+    let role = [];
+    if ((accounts[0] && accounts[0].idTokenClaims["roles"]) === undefined){
+        role.push('Guest');
+    }
+    else{
+        role.push(accounts[0] && accounts[0].idTokenClaims["roles"]);
+    }
 
     if (isAuthenticated){
         roles = "(" + role + ")"

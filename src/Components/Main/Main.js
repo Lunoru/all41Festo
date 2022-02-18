@@ -15,24 +15,33 @@ import {Denied} from "../../Pages/Denied";
 const Pages = () => {
 
     const {accounts} = useMsal();
-    const role = accounts[0] && accounts[0].idTokenClaims["roles"][0];
+    // const role = accounts[0] && accounts[0].idTokenClaims["roles"][0];
 
-    if (role === "Coordinator"){
+    let role = [];
+    if ((accounts[0] && accounts[0].idTokenClaims["roles"]) === undefined){
+        role.push('Guest');
+    }
+    else{
+        role.push(accounts[0] && accounts[0].idTokenClaims["roles"]);
+    }
+
+    if (role == "Coordinator"){
 
     return (
-        <Routes>
-            <Route path="/home" element={<Home />}/>
-            <Route path="/NewRequest" element={<NewRequest />}/>
-            <Route path="/ClassroomManage" element={<ClassroomManage />}/>
-            <Route path="/LearningHistory" element={<LearningHistory />}/>
-            <Route path="/help" element={<Help />}/>
-            <Route path="/" element={<Start />}/>
-            <Route path="/profile" element={<Profile />}/>
-            <Route path="/hello" element={ <Hello />}/>
-            <Route path="/ReqApprove" element={ <ReqApprove />}/>
 
+        <Routes>
+                <Route path="/home" element={<Home />}/>
+                <Route path="/NewRequest" element={<NewRequest />}/>
+                <Route path="/ClassroomManage" element={<ClassroomManage />}/>
+                <Route path="/LearningHistory" element={<LearningHistory />}/>
+                <Route path="/help" element={<Help />}/>
+                <Route path="/" element={<Start />}/>
+                <Route path="/profile" element={<Profile />}/>
+                <Route path="/hello" element={ <Hello />}/>
+                <Route path="/ReqApprove" element={ <ReqApprove />}/>
         </Routes>
-    )}else if(role === "Requestor"){
+
+    )}else if(role == "Requestor"){
         return  (<Routes>
             <Route path="/home" element={<Home />}/>
             <Route path="/NewRequest" element={<NewRequest />}/>
@@ -40,7 +49,7 @@ const Pages = () => {
             <Route path="/help" element={<Help />}/>
             <Route path="/" element={<Start />}/>
         </Routes>)
-    }else if (role === "Student" || "Teacher") {
+    }else if (role == "Student") {
         return (<Routes>
             <Route path="/home" element={<Home />}/>
             <Route path="/help" element={<Help />}/>
@@ -48,6 +57,13 @@ const Pages = () => {
             <Route path="/" element={<Start />}/>
             </Routes>)
 
+    }else if (role == "Teacher"){
+        return (<Routes>
+            <Route path="/home" element={<Home />}/>
+            <Route path="/help" element={<Help />}/>
+            <Route path="/LearningHistory" element={<LearningHistory />}/>
+            <Route path="/" element={<Start />}/>
+        </Routes>)
     }else{
         return (<Routes>
             <Route path="/home" element={<Home />}/>
