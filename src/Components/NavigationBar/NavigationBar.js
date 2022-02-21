@@ -57,7 +57,7 @@ export const NavigationBar = () => {
                     <Navbar>
                         <PageLayout>
                             <div className="link-festo">
-                                <NavLink className={"headerHome"} activeClassName={"active"} to="/home">Home</NavLink>
+                                <NavLink id={"home"} className={"headerHome"} activeClassName={"active"} to="/home">Home</NavLink>
                             </div>
                         </PageLayout>
                     </Navbar>
