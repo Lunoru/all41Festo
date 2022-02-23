@@ -1,4 +1,21 @@
+import "react-bootstrap"
+import {useState} from "react";
+import initialRequests from "../Data/data";
+import Request from "../Components/Output/Request";
+
 export const ReqApprove = () => {
+    const [requestList, setRequest] = useState(initialRequests)
+
+    const staticRequest = requestList.map(
+        req => <Request id={req.id}
+                        person={req.person}
+                        language={req.language}
+                        cost={req.costCentre}
+                        target={req.target}
+                        sem={req.semester}
+                        com={req.comments}
+        />)
+
     return (
         <div className={"container"}>
             <div>
@@ -17,114 +34,7 @@ export const ReqApprove = () => {
                 </tr>
                 </thead>
                 <tbody className="align-middle ">
-                <tr>
-                    <td>Inkilas Pasala</td>
-                    <td>Lithuanian</td>
-                    <td>654654</td>
-                    <td>Work</td>
-                    <td>Jan-Mar (I)</td>
-                    <td>Willing to learn</td>
-                    <td className="btn-group w-100">
-                        <button className="btn btn-outline-secondary">V</button>
-                        <button className="btn btn-outline-secondary">X</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Inkilas Pasala</td>
-                    <td>English</td>
-                    <td >654654</td>
-                    <td >Work</td>
-                    <td >Jan-Mar (I)</td>
-                    <td >Willing to learn</td>
-                    <td className="btn-group w-100">
-                        <button className="btn btn-outline-secondary">V</button>
-                        <button className="btn btn-outline-secondary">X</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Inkilas Pasala</td>
-                    <td>English</td>
-                    <td>654654</td>
-                    <td>Work</td>
-                    <td>Jan-Mar (I)</td>
-                    <td>Willing to learn</td>
-                    <td className="btn-group w-100">
-                        <button className="btn btn-outline-secondary">V</button>
-                        <button className="btn btn-outline-secondary">X</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Inkilas Pasala</td>
-                    <td>English</td>
-                    <td>654654</td>
-                    <td>Work</td>
-                    <td>Jan-Mar (I)</td>
-                    <td>Willing to learn</td>
-                    <td className="btn-group w-100">
-                        <button className="btn btn-outline-secondary">V</button>
-                        <button className="btn btn-outline-secondary">X</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Inkilas Pasala</td>
-                    <td>English</td>
-                    <td>654654</td>
-                    <td>Work</td>
-                    <td>Jan-Mar (I)</td>
-                    <td>Willing to learn</td>
-                    <td className="btn-group w-100">
-                        <button className="btn btn-outline-secondary">V</button>
-                        <button className="btn btn-outline-secondary">X</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Inkilas Pasala</td>
-                    <td>English</td>
-                    <td>654654</td>
-                    <td>Work</td>
-                    <td>Jan-Mar (I)</td>
-                    <td>Willing to learn</td>
-                    <td className="btn-group w-100">
-                        <button className="btn btn-outline-secondary">V</button>
-                        <button className="btn btn-outline-secondary">X</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Inkilas Pasala</td>
-                    <td>English</td>
-                    <td>654654</td>
-                    <td>Work</td>
-                    <td>Jan-Mar (I)</td>
-                    <td>Willing to learn</td>
-                    <td className="btn-group w-100">
-                        <button className="btn btn-outline-secondary">V</button>
-                        <button className="btn btn-outline-secondary">X</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Inkilas Pasala</td>
-                    <td>English</td>
-                    <td>654654</td>
-                    <td>Work</td>
-                    <td>Jan-Mar (I)</td>
-                    <td>Willing to learn</td>
-                    <td className="btn-group w-100">
-                        <button className="btn btn-outline-secondary">V</button>
-                        <button className="btn btn-outline-secondary">X</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Inkilas Pasala</td>
-                    <td>English</td>
-                    <td>654654</td>
-                    <td>Work</td>
-                    <td>Jan-Mar (I)</td>
-                    <td>Willing to learn</td>
-                    <td className="btn-group w-100">
-                        <button className="btn btn-outline-secondary">V</button>
-                        <button className="btn btn-outline-secondary">X</button>
-                    </td>
-                </tr>
+                {staticRequest}
                 </tbody>
             </table>
         </div>)
